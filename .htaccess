@@ -1,0 +1,22 @@
+# Racine de document non déplaçable (spec 15 §4.1).
+#
+# Sur un hébergement mutualisé, le domaine pointe souvent sur un répertoire
+# imposé — `public_html/`, `www/` — sans qu'on puisse le faire pointer sur le
+# `public/` de l'application. Ce fichier sert ce cas : il redirige tout le
+# trafic vers `public/`, où le .htaccess de Laravel prend le relais.
+#
+# Il ne sert QUE dans ce cas. Si la racine du document est réglable — VPS,
+# serveur dédié, mutualisé qui le permet —, pointez-la directement sur
+# `public/` : ce fichier se retrouve alors HORS de la racine servie et n'est
+# jamais lu, ce qui est sans conséquence.
+#
+# Ne pas retirer `public/.htaccess` en croyant que celui-ci le remplace : les
+# deux ne font pas le même travail. Celui-ci fait entrer les requêtes dans
+# `public/` ; celui de `public/` les route vers le contrôleur frontal. Sans le
+# second, seule la page d'accueil répond et tout le reste tombe en 404 — et,
+# selon la configuration du serveur, la réécriture peut boucler jusqu'à un 500.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
