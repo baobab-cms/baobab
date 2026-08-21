@@ -1,0 +1,38 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+/.idea
+/.vscode
+/auth.json
+/node_modules
+/public/baobab
+/public/build
+/public/hot
+# Produit par le plugin de polices de Vite et truffé d'URLs du serveur de dev
+# (http://[::1]:5173) : jamais versionné, jamais distribué.
+/public/fonts-manifest.dev.json
+/public/storage
+/public/themes
+/storage/*.key
+/storage/pail
+/vendor
+
+# Non versionné, comme dans `laravel/laravel` : un squelette de projet laisse
+# `composer create-project` résoudre ses dépendances à l'installation. Le
+# pipeline d'archive (spec 15 §2.1) produit la sienne au moment du tag.
+/composer.lock
+Homestead.json
+Homestead.yaml
+Thumbs.db
+
+/database/database.sqlite
+
+# Les modules et thèmes installés localement appartiennent au site, pas au
+# squelette : seul le placeholder est versionné (spec 01 §7.1).
+/modules/*
+!/modules/.gitkeep
+/themes/*
+!/themes/.gitkeep

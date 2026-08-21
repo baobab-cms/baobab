@@ -1,0 +1,182 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+/*
+ * Le Core est une dépendance Composer : ses vues Blade vivent sous `vendor/`,
+ * pas dans un répertoire voisin. Le chemin `packages/baobab/core/...` du banc
+ * d'essai n'a de sens que dans le monorepo — utilisé ici, il ne résout rien et
+ * Tailwind purge silencieusement toutes les classes que seules les vues du Core
+ * emploient, dont le décalage de la barre latérale (suivi n° 177).
+ */
+@source '../../vendor/baobab/core/resources/views/**/*.blade.php';
+
+@theme {
+    /*
+     * Tokens sémantiques (spec 04 §11.1) : jamais de couleur brute dans les
+     * composants. Valeurs fournies par la cascade de design tokens (spec 18) —
+     * `<x-baobab::design-tokens />` (layout admin) émet les `--bb-*` avant que
+     * ce bloc ne soit évalué. `--color-surface-subtle` n'a pas d'équivalent
+     * exact spec-18 : mappée sur `--bb-color-background`, le plus proche
+     * sémantiquement d'une surface en retrait.
+     */
+    --font-sans: var(--bb-font-body);
+    --font-display: var(--bb-font-heading);
+    --font-mono: var(--bb-font-mono);
+
+    --color-surface: var(--bb-color-surface);
+    --color-surface-subtle: var(--bb-color-background);
+    --color-border: var(--bb-color-border);
+    --color-primary: var(--bb-color-primary);
+    --color-foreground: var(--bb-color-text);
+    --color-muted: var(--bb-color-muted);
+    --color-success: var(--bb-color-success);
+    --color-warning: var(--bb-color-warning);
+    --color-danger: var(--bb-color-danger);
+
+    /*
+     * Identité fixe du Core (spec 18 §13.3, §13.6) — jamais surchargée par le
+     * branding d'un site (distincte des tokens sémantiques ci-dessus, qui
+     * suivent la cascade configurable) : chrome structurel (badges, états
+     * système). Coexiste sans collision avec les clés plates au-dessus
+     * (`--color-danger` vs `--color-danger-500` sont deux clés Tailwind
+     * distinctes).
+     */
+    --color-baobab-50: #fdf3ec;
+    --color-baobab-100: #f9e0ce;
+    --color-baobab-200: #f2be9b;
+    --color-baobab-300: #e8935f;
+    --color-baobab-400: #db6b33;
+    --color-baobab-500: #c2571b;
+    --color-baobab-600: #9e4415;
+    --color-baobab-700: #7a3310;
+    --color-baobab-800: #63290c;
+    --color-baobab-900: #4e2009;
+
+    --color-leaf-50: #eff5ee;
+    --color-leaf-100: #d6e5d4;
+    --color-leaf-200: #aecbab;
+    --color-leaf-300: #7fab7c;
+    --color-leaf-400: #588f56;
+    --color-leaf-500: #3d6b45;
+    --color-leaf-600: #2f5233;
+    --color-leaf-700: #233d26;
+    --color-leaf-800: #1b301e;
+    --color-leaf-900: #142416;
+
+    --color-sun-50: #fdf7e9;
+    --color-sun-100: #faebc5;
+    --color-sun-200: #f4d687;
+    --color-sun-300: #ebbb4a;
+    --color-sun-400: #d9a02b;
+    --color-sun-500: #b5821c;
+    --color-sun-600: #8c6314;
+    --color-sun-700: #66470e;
+    --color-sun-800: #50380b;
+    --color-sun-900: #3b2908;
+
+    --color-sand-50: #faf8f5;
+    --color-sand-100: #f0ede7;
+    --color-sand-200: #ddd8ce;
+    --color-sand-300: #b8b2a5;
+    --color-sand-400: #8a8477;
+    --color-sand-500: #615c52;
+    --color-sand-600: #524e45;
+    --color-sand-700: #454138;
+    --color-sand-800: #2e2b24;
+    --color-sand-900: #1c1a15;
+
+    --color-danger-50: #fceeec;
+    --color-danger-100: #f6d3ce;
+    --color-danger-200: #eda99e;
+    --color-danger-300: #e08072;
+    --color-danger-400: #ce5442;
+    --color-danger-500: #b23a28;
+    --color-danger-600: #922e1f;
+    --color-danger-700: #712318;
+    --color-danger-800: #521a11;
+    --color-danger-900: #3b120c;
+
+    --color-warning-50: #fdf5e6;
+    --color-warning-100: #fae5bb;
+    --color-warning-200: #f5ce7e;
+    --color-warning-300: #edb147;
+    --color-warning-400: #df941f;
+    --color-warning-500: #c07a10;
+    --color-warning-600: #965f0c;
+    --color-warning-700: #6e4609;
+    --color-warning-800: #553607;
+    --color-warning-900: #3e2805;
+
+    --color-info-50: #eef3f7;
+    --color-info-100: #d3e1ec;
+    --color-info-200: #a8c4d9;
+    --color-info-300: #7ba5c2;
+    --color-info-400: #5586a8;
+    --color-info-500: #3d6a8a;
+    --color-info-600: #2f5470;
+    --color-info-700: #244157;
+    --color-info-800: #1a2f3f;
+    --color-info-900: #12212c;
+
+    --color-light-0: #ffffff;
+    --color-light-1: #fcfbf8;
+    --color-light-2: #faf8f5;
+    --color-light-3: #f5f2ec;
+    --color-light-4: #f0ede7;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+/*
+ * Zone éditable Tiptap (champ richtext, M4 point 4a) — règles ciblées plutôt
+ * qu'une dépendance à @tailwindcss/typography, le périmètre reste simple
+ * (StarterKit + lien).
+ */
+.tiptap {
+    min-height: 8rem;
+    outline: none;
+}
+
+.tiptap p {
+    margin-bottom: 0.75em;
+}
+
+.tiptap h2 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 0.75em 0 0.5em;
+}
+
+.tiptap h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0.75em 0 0.5em;
+}
+
+.tiptap ul,
+.tiptap ol {
+    margin: 0 0 0.75em 1.25em;
+}
+
+.tiptap ul {
+    list-style: disc;
+}
+
+.tiptap ol {
+    list-style: decimal;
+}
+
+.tiptap blockquote {
+    border-left: 3px solid var(--color-border);
+    padding-left: 0.75em;
+    color: var(--color-muted);
+    margin: 0 0 0.75em;
+}
+
+.tiptap a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
