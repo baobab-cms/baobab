@@ -22,6 +22,11 @@ php artisan baobab:install
 depuis le site officiel (elle contient `vendor/` et les assets déjà compilés),
 l'extraire sur le serveur, puis ouvrir `https://votresite.tld/install`.
 
+**[`INSTALL.md`](INSTALL.md) détaille ce second parcours** : versions de PHP,
+les deux dispositions possibles selon que la racine du site est choisie ou
+imposée, le dépôt des fichiers sans y passer la journée, et les tâches serveur
+qui restent à faire.
+
 Dans les deux cas, l'installation passe par la même séquence d'actions (spec 15 §4) :
 un seul pipeline, deux interfaces.
 

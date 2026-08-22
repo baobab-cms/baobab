@@ -4,6 +4,11 @@
 use Illuminate\Foundation\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
+// Garde pré-vol (spec 15 §2.1) — voir le commentaire de public/index.php.
+// La console a besoin de la même protection : sur un mutualisé, le PHP de la
+// ligne de commande est souvent d'une autre version que celui du serveur web.
+require __DIR__.'/bootstrap/preflight.php';
+
 define('LARAVEL_START', microtime(true));
 
 // Register the Composer autoloader...
