@@ -1,8 +1,12 @@
 *.log
 .DS_Store
+# Toute variante de .env est un fichier de secrets — clé applicative, mot de
+# passe de base. On exclut le motif entier plutôt que trois noms connus :
+# une sauvegarde nommée autrement (.env.avant-recette) est passée à travers
+# le filet et a failli être commitée.
 .env
-.env.backup
-.env.production
+.env.*
+!.env.example
 .phpunit.result.cache
 /.idea
 /.vscode
