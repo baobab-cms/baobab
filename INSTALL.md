@@ -1,13 +1,17 @@
-# Installer Baobab CMS sur un hébergement mutualisé
+# Installer Baobab CMS depuis l'archive pré-packagée
 
 Ce document accompagne l'**archive ZIP pré-packagée**, celle qui contient déjà
 ses dépendances et ses fichiers compilés. Vous n'aurez besoin ni de Composer ni
 de Node sur le serveur.
 
-> **État de cette version.** L'installateur graphique (`/install`) n'est pas
-> encore disponible dans cette build. L'installation se fait donc en ligne de
-> commande, ce qui suppose un accès SSH. Si votre hébergement n'en propose pas,
-> attendez la version qui embarquera l'installateur.
+> **Deux façons d'installer, au choix.** L'**installateur graphique**
+> (`/install`, dans le navigateur) est la voie recommandée sur un hébergement
+> mutualisé : déposez l'archive, ouvrez votre domaine, il vous y mène de
+> lui-même. Sur un serveur avec accès SSH (VPS, dédié), la **ligne de
+> commande** (§3 ci-dessous, `php artisan baobab:install`) va plus vite et
+> convient aussi bien. Les deux passent par le même moteur d'installation et
+> aboutissent au même site — ce document détaille la voie CLI ; la voie
+> graphique se découvre d'elle-même à l'ouverture du domaine.
 
 ---
 
