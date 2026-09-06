@@ -180,3 +180,17 @@
     color: var(--color-primary);
     text-decoration: underline;
 }
+
+.baobab-form-embed {
+    display: inline-block;
+    border-radius: 0.25rem;
+    padding: 0.1em 0.5em;
+    background: var(--color-surface-subtle);
+    border: 1px dashed var(--color-border);
+    font-size: 0.85em;
+    user-select: none;
+}
+
+.baobab-form-embed::before {
+    content: '📋 ';
+}
