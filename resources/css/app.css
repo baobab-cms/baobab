@@ -28,6 +28,8 @@
     --color-surface-subtle: var(--bb-color-background);
     --color-border: var(--bb-color-border);
     --color-primary: var(--bb-color-primary);
+    --color-primary-strong: var(--bb-color-primary-strong);
+    --color-on-primary: var(--bb-color-on-primary);
     --color-foreground: var(--bb-color-text);
     --color-muted: var(--bb-color-muted);
     --color-success: var(--bb-color-success);
