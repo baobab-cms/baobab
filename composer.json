@@ -11,8 +11,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "baobab/core": "dev-main",
-        "baobab/default-theme": "dev-main",
+        "baobab/core": "^0.1",
+        "baobab/default-theme": "^0.1",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0"
     },
@@ -63,27 +63,5 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "name": "baobab-core",
-            "type": "path",
-            "url": "../core",
-            "options": {
-                "versions": {
-                    "baobab/core": "dev-main"
-                }
-            }
-        },
-        {
-            "name": "baobab-default-theme",
-            "type": "path",
-            "url": "../default-theme",
-            "options": {
-                "versions": {
-                    "baobab/default-theme": "dev-main"
-                }
-            }
-        }
-    ]
+    "prefer-stable": true
 }
